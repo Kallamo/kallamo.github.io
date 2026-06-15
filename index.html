@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kallamo — Orchestrate AI, don't just chat with it</title>
+  <meta name="description"
+    content="Kallamo is a bring-your-own-key desktop platform for orchestrating AI. Build custom personas, ground them in your own knowledge, and chain them into multi-step workflows that remember everything. Free, open source, runs on your machine.">
+  <meta name="theme-color" content="#010a12">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kallamo.github.io/">
+  <meta property="og:title" content="Kallamo — Orchestrate AI, don't just chat with it">
+  <meta property="og:description"
+    content="Build custom AI personas, feed them your own documents, chain them into multi-step workflows, and let them remember across sessions. Bring your own key — your data stays on your machine.">
+  <meta property="og:image" content="https://kallamo.github.io/assets/kallamo-preview.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kallamo — Orchestrate AI, don't just chat with it">
+  <meta name="twitter:description"
+    content="A bring-your-own-key desktop platform for orchestrating AI: personas, knowledge, and chained workflows that remember everything.">
+  <meta name="twitter:image" content="https://kallamo.github.io/assets/kallamo-preview.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="site-header__bg" id="kl-headerbg" aria-hidden="true"></div>
+    <a class="brand" href="#top">
+      <img class="brand__mark" src="assets/logo.svg" alt="Kallamo logo">
+      <img class="brand__type" src="assets/logotype.svg" alt="Kallamo">
+    </a>
+    <nav class="site-nav">
+      <a class="btn-pill btn-pill--ghost" href="https://github.com/Kallamo/Kallamo" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path
+            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
+        GitHub
+      </a>
+      <a class="btn-pill btn-pill--ghost" href="https://discord.com/invite/CE4C9JRS9H" target="_blank" rel="noopener">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" width="16" height="16" fill="currentColor">
+          <path
+            d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c1.1-.8,2.17-1.64,3.2-2.5a75.6,75.6,0,0,0,71.7,0c1,1,2.1,1.7,3.2,2.5a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,50.12,122.9,27.28,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" />
+        </svg>
+        Discord Community
+      </a>
+      <a class="btn-pill btn-pill--gold" href="download.html">Download</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="top" data-screen-label="Hero">
+    <div class="hero__stage">
+      <div class="hero__glow" id="kl-glow" aria-hidden="true"></div>
+      <span class="hero__twinkle hero__twinkle--a" aria-hidden="true"></span>
+      <span class="hero__twinkle hero__twinkle--b" aria-hidden="true"></span>
+      <span class="hero__twinkle hero__twinkle--c" aria-hidden="true"></span>
+
+      <div class="hero__mockwrap">
+        <div class="hero__mock" id="kl-mock">
+          <div class="device">
+            <div class="device__screen">
+              <span class="device__cam"></span>
+              <img src="assets/ws-space.png" alt="Kallamo workspace">
+            </div>
+            <div class="device__base"><span class="device__notch"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__text" id="kl-text">
+        <div class="hero__textinner">
+          <div class="hero__veil" aria-hidden="true"></div>
+          <div class="hero__content">
+            <div class="eyebrow">
+              <span class="eyebrow__line eyebrow__line--l"></span>
+              <span class="eyebrow__label">Bring your own key AI platform</span>
+              <span class="eyebrow__line eyebrow__line--r"></span>
+            </div>
+            <h1 class="hero__title">Craft the mind.<br><span class="accent-italic">Chain the thought.</span></h1>
+            <p class="hero__lede">Design how AI thinks. Build custom personas, ground them in your own knowledge, and
+              chain them into multi-step workflows powered by memory that keeps your context across long sessions. All
+              on your machine.</p>
+            <div class="hero__actions">
+              <a class="btn-pill btn-pill--gold btn-pill--lg" href="https://github.com/Kallamo/Kallamo/releases/latest"
+                target="_blank" rel="noopener">Download free</a>
+              <a class="btn-pill btn-pill--ghost btn-pill--lg" href="https://github.com/Kallamo/Kallamo" target="_blank"
+                rel="noopener">View on GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero__fade" aria-hidden="true"></div>
+      <div class="hero__cue" id="kl-cue">
+        <span class="hero__cue-label">Scroll</span>
+        <span class="hero__cue-line"></span>
+        <span class="hero__cue-dot"></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="statement">
+    <div class="statement__inner" data-reveal>
+      <div class="eyebrow eyebrow--center">
+        <span class="eyebrow__line eyebrow__line--l"></span>
+        <span class="eyebrow__label">Not another wrapper</span>
+        <span class="eyebrow__line eyebrow__line--r"></span>
+      </div>
+      <h2 class="statement__head">You bring the ideas. Most AI just gives you one chat box and calls it done. <span
+          class="accent">Kallamo is an orchestration platform</span> <br> design <em>how AI thinks</em>, not just what
+        it
+        says.</h2>
+      <p class="statement__sub">Built for everyone the coding tools forgot. Writers, game masters, project managers,
+        researchers, students, and anyone who wants more from AI without writing a line of code.</p>
+    </div>
+  </section>
+
+  <section class="features" id="features" data-screen-label="Platform">
+    <div class="features__inner">
+      <div class="features__head" data-reveal>
+        <div class="kicker">
+          <span class="kicker__label">What's inside</span>
+          <span class="kicker__line"></span>
+        </div>
+        <h2 class="section-title">An orchestration layer<br>for everything you do.</h2>
+      </div>
+
+      <div class="carousel" id="cs-root" data-reveal>
+        <div class="carousel__viewport" id="cs-viewport">
+          <div class="carousel__track" id="cs-track">
+
+            <div class="slide">
+              <div class="slide__copy">
+                <div class="slide__index">01 / Workflows</div>
+                <h3 class="slide__title">Multi-Step Workflows</h3>
+                <p class="slide__text">Chain AI profiles into linear pipelines where each step's output feeds the next.
+                  Research, Analyze, Draft, Review runs as a single action, each step with its own model, prompt, and
+                  knowledge base.</p>
+              </div>
+              <div class="panel panel--workflow-steps">
+                <img class="wf-step wf-step--1" src="assets/WorkflowStep1.png" alt="Workflow Step 1">
+                <img class="wf-step wf-step--2" src="assets/WorkflowStep2.png" alt="Workflow Step 2">
+                <img class="wf-step wf-step--3" src="assets/WorkflowStep3.png" alt="Workflow Step 3">
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="slide__copy">
+                <div class="slide__index">02 / Retrieval</div>
+                <h3 class="slide__title">Hybrid RAG Engine</h3>
+                <p class="slide__text">Ground every answer in your own documents. Dense vector search fused with keyword
+                  BM25 through Reciprocal Rank Fusion, all stored locally in SQLite.</p>
+              </div>
+              <div class="panel panel--rag">
+                <div class="rag__rows">
+                  <div class="rag__row rag__row--blue"><span class="rag__name">Vector search</span><span
+                      class="rag__tag">cosine</span></div>
+                  <div class="rag__row rag__row--teal"><span class="rag__name">Keyword BM25</span><span
+                      class="rag__tag">FTS5</span></div>
+                </div>
+                <div class="rag__fuse"><span class="rag__rule"></span>Reciprocal Rank Fusion<span
+                    class="rag__rule"></span></div>
+                <div class="rag__out"><span class="rag__chip">Ranked context &#8594; answer</span></div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="slide__copy">
+                <div class="slide__index">03 / Agent</div>
+                <h3 class="slide__title">Agentic RAG Mode</h3>
+                <p class="slide__text">For deeper research, an autonomous Thought to Action loop decides which knowledge
+                  bases to search and which files to read in full, then writes a research brief before answering.</p>
+              </div>
+              <div class="panel panel--agent">
+                <div class="agent__line"><span class="agent__kind agent__kind--gold">THOUGHT</span><span
+                    class="agent__say">Which sources answer this?</span></div>
+                <div class="agent__tools">
+                  <span class="agent__tool">Search KB</span>
+                  <span class="agent__tool">Read file</span>
+                  <span class="agent__tool">Recall memory</span>
+                </div>
+                <div class="agent__line"><span class="agent__kind agent__kind--teal">ACTION</span><span
+                    class="agent__say">Synthesize research brief</span></div>
+                <div class="agent__loop">&#8635; loops up to 2 turns, then answers</div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="slide__copy">
+                <div class="slide__index">04 / Memory</div>
+                <h3 class="slide__title">Smart Chat Memory</h3>
+                <p class="slide__text">When a conversation grows past your token threshold, older messages auto archive
+                  into vectorized memory blocks that stay searchable forever. Recall details from thousands of messages
+                  ago.</p>
+              </div>
+              <div class="panel panel--memory-screenshot">
+                <img class="memory-screenshot" src="assets/Summarization.png"
+                  alt="Smart Chat Memory summarization screenshot">
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="slide__copy">
+                <div class="slide__index">05 / Knowledge</div>
+                <h3 class="slide__title">Knowledge Base Manager</h3>
+                <p class="slide__text">Build and organize knowledge bases visually. Drop in PDFs, DOCX, and text, watch
+                  them chunk and vectorize, then attach any base to any profile in a click.</p>
+              </div>
+              <div class="panel panel--kb-manager">
+                <img class="kb-manager-screenshot" src="assets/KBManager.png" alt="Knowledge Base Manager screenshot">
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="slide__copy">
+                <div class="slide__index">06 / Portability</div>
+                <h3 class="slide__title">Portable Profiles</h3>
+                <p class="slide__text">Export any persona, workflow, or knowledge base as a shareable package. Hand your
+                  RPG narrator or project planner to anyone, complete with prompts, files, and config.</p>
+              </div>
+              <div class="panel--portable">
+                <img class="portable-screenshot" src="assets/ExportProfile.png"
+                  alt="Portable profiles export screenshot">
+                <div class="portable-tags-box">
+                  <div class="pkg__exts">
+                    <span class="pkg__ext">.klp for profiles</span>
+                    <span class="pkg__ext">.klw for workflows</span>
+                    <span class="pkg__ext">.klkb for knowledge bases</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="slide">
+              <div class="slide__copy">
+                <div class="slide__index">07 / Providers</div>
+                <h3 class="slide__title">Bring Your Own Key</h3>
+                <p class="slide__text">Connect OpenAI, Anthropic, Google, Bedrock, OpenRouter, or any local model. Keys
+                  are encrypted at rest. Use the cheapest model to brainstorm and the strongest for final output, all in
+                  one workflow.</p>
+              </div>
+              <div class="panel panel--keys">
+                <div class="key__row"><span class="key__name">OpenAI</span><span
+                    class="key__val">sk-&bull;&bull;&bull;&bull;&bull;&bull;2f</span><span class="key__dot"></span>
+                </div>
+                <div class="key__row"><span class="key__name">Anthropic</span><span
+                    class="key__val">sk-ant-&bull;&bull;&bull;&bull;9c</span><span class="key__dot"></span></div>
+                <div class="key__row"><span class="key__name">Local · Ollama</span><span
+                    class="key__val">localhost:11434</span><span class="key__dot"></span></div>
+                <div class="key__note">encrypted at rest · safeStorage</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="carousel__controls">
+          <button class="carousel__arrow" id="cs-prev" aria-label="Previous">&#8249;</button>
+          <div class="carousel__dots">
+            <button class="carousel__dot is-active" id="cs-dot-0" data-idx="0" aria-label="Slide 1"></button>
+            <button class="carousel__dot" id="cs-dot-1" data-idx="1" aria-label="Slide 2"></button>
+            <button class="carousel__dot" id="cs-dot-2" data-idx="2" aria-label="Slide 3"></button>
+            <button class="carousel__dot" id="cs-dot-3" data-idx="3" aria-label="Slide 4"></button>
+            <button class="carousel__dot" id="cs-dot-4" data-idx="4" aria-label="Slide 5"></button>
+            <button class="carousel__dot" id="cs-dot-5" data-idx="5" aria-label="Slide 6"></button>
+            <button class="carousel__dot" id="cs-dot-6" data-idx="6" aria-label="Slide 7"></button>
+          </div>
+          <button class="carousel__arrow" id="cs-next" aria-label="Next">&#8250;</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="marquee-section">
+    <div class="marquee-section__head" data-reveal>
+      <p class="marquee-section__label">Works with everything you already use</p>
+    </div>
+    <div class="marquee">
+      <div class="marquee__row" id="kl-marquee-row">
+        <div class="prov"><span class="prov__logo prov__logo--oa"><svg xmlns="http://www.w3.org/2000/svg" width="256"
+              height="260" preserveAspectRatio="xMidYMid" viewBox="0 0 256 260">
+              <path fill="#ffffff"
+                d="M239.184 106.203a64.716 64.716 0 0 0-5.576-53.103C219.452 28.459 191 15.784 163.213 21.74A65.586 65.586 0 0 0 52.096 45.22a64.716 64.716 0 0 0-43.23 31.36c-14.31 24.602-11.061 55.634 8.033 76.74a64.665 64.665 0 0 0 5.525 53.102c14.174 24.65 42.644 37.324 70.446 31.36a64.72 64.72 0 0 0 48.754 21.744c28.481.025 53.714-18.361 62.414-45.481a64.767 64.767 0 0 0 43.229-31.36c14.137-24.558 10.875-55.423-8.083-76.483Zm-97.56 136.338a48.397 48.397 0 0 1-31.105-11.255l1.535-.87 51.67-29.825a8.595 8.595 0 0 0 4.247-7.367v-72.85l21.845 12.636c.218.111.37.32.409.563v60.367c-.056 26.818-21.783 48.545-48.601 48.601Zm-104.466-44.61a48.345 48.345 0 0 1-5.781-32.589l1.534.921 51.722 29.826a8.339 8.339 0 0 0 8.441 0l63.181-36.425v25.221a.87.87 0 0 1-.358.665l-52.335 30.184c-23.257 13.398-52.97 5.431-66.404-17.803ZM23.549 85.38a48.499 48.499 0 0 1 25.58-21.333v61.39a8.288 8.288 0 0 0 4.195 7.316l62.874 36.272-21.845 12.636a.819.819 0 0 1-.767 0L41.353 151.53c-23.211-13.454-31.171-43.144-17.804-66.405v.256Zm179.466 41.695-63.08-36.63L161.73 77.86a.819.819 0 0 1 .768 0l52.233 30.184a48.6 48.6 0 0 1-7.316 87.635v-61.391a8.544 8.544 0 0 0-4.4-7.213Zm21.742-32.69-1.535-.922-51.619-30.081a8.39 8.39 0 0 0-8.492 0L99.98 99.808V74.587a.716.716 0 0 1 .307-.665l52.233-30.133a48.652 48.652 0 0 1 72.236 50.391v.205ZM88.061 139.097l-21.845-12.585a.87.87 0 0 1-.41-.614V65.685a48.652 48.652 0 0 1 79.757-37.346l-1.535.87-51.67 29.825a8.595 8.595 0 0 0-4.246 7.367l-.051 72.697Zm11.868-25.58 28.138-16.217 28.188 16.218v32.434l-28.086 16.218-28.188-16.218-.052-32.434Z" />
+            </svg></span><span class="prov__name">OpenAI</span>
+        </div>
+        <div class="prov"><span class="prov__logo prov__logo--an"><img class="prov__ico"
+              src="https://cdn.simpleicons.org/anthropic/d97757" alt="An"></span><span
+            class="prov__name">Anthropic</span></div>
+        <div class="prov"><span class="prov__logo prov__logo--go"><svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32" fill="currentColor" fill-rule="evenodd">
+              <title>AI Studio (Google)</title>
+              <path
+                d="M9.921 4.196H6.328A2.705 2.705 0 003.623 6.9v11.362a2.705 2.705 0 002.705 2.705h11.363a2.705 2.705 0 002.705-2.705v-4.756l1.623-1.113v5.87a4.329 4.329 0 01-4.328 4.328H6.328A4.329 4.329 0 012 18.263V6.901a4.328 4.328 0 014.328-4.329h4.545l-.952 1.624z" />
+              <path
+                d="M17.82 0c.145 0 .268.104.299.246a7 7 0 001.9 3.484 7 7 0 003.485 1.901c.142.031.246.154.246.3a.308.308 0 01-.246.298A7 7 0 0020.02 8.13a7 7 0 00-1.912 3.535.297.297 0 01-.288.238.297.297 0 01-.288-.238A7 7 0 0015.62 8.13a7 7 0 00-3.535-1.912.297.297 0 01-.238-.288c0-.14.1-.26.238-.288A7 7 0 0015.62 3.73 7.001 7.001 0 0017.521.246.308.308 0 0117.82 0z" />
+            </svg></span><span class="prov__name">Google
+            AI</span></div>
+        <div class="prov"><span class="prov__logo prov__logo--vx"><svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24">
+              <path
+                d="M20 13.89a.77.77 0 0 0-1-.16l-7 5.14v.22a.72.72 0 1 1 0 1.43.74.74 0 0 0 .45-.15l7.41-5.47a.76.76 0 0 0 .14-1.01Z"
+                style="fill:#669df6" />
+              <path
+                d="M12 20.52a.72.72 0 0 1 0-1.43v-.22l-7-5.14a.76.76 0 0 0-1 .16.74.74 0 0 0 .16 1l7.41 5.47a.73.73 0 0 0 .44.15Z"
+                style="fill:#aecbfa" />
+              <path
+                d="M12 18.34a1.47 1.47 0 1 0 1.47 1.47A1.47 1.47 0 0 0 12 18.34Zm0 2.18a.72.72 0 1 1 .72-.71.71.71 0 0 1-.72.71Z"
+                style="fill:#4285f4" />
+              <path d="M6 6.11a.76.76 0 0 1-.75-.75V3.48a.76.76 0 1 1 1.51 0v1.88a.76.76 0 0 1-.76.75Z"
+                style="fill:#aecbfa" />
+              <circle cx="5.98" cy="12" r=".76" style="fill:#aecbfa" />
+              <circle cx="5.98" cy="9.79" r=".76" style="fill:#aecbfa" />
+              <circle cx="5.98" cy="7.57" r=".76" style="fill:#aecbfa" />
+              <path d="M18 8.31a.76.76 0 0 1-.75-.76V5.67a.75.75 0 1 1 1.5 0v1.88a.75.75 0 0 1-.75.76Z"
+                style="fill:#4285f4" />
+              <circle cx="18.02" cy="12.01" r=".76" style="fill:#4285f4" />
+              <circle cx="18.02" cy="9.76" r=".76" style="fill:#4285f4" />
+              <circle cx="18.02" cy="3.48" r=".76" style="fill:#4285f4" />
+              <path d="M12 15a.76.76 0 0 1-.75-.75v-1.91a.76.76 0 0 1 1.51 0v1.89A.76.76 0 0 1 12 15Z"
+                style="fill:#669df6" />
+              <circle cx="12" cy="16.45" r=".76" style="fill:#669df6" />
+              <circle cx="12" cy="10.14" r=".76" style="fill:#669df6" />
+              <circle cx="12" cy="7.92" r=".76" style="fill:#669df6" />
+              <path d="M15 10.54a.76.76 0 0 1-.75-.75V7.91a.76.76 0 1 1 1.51 0v1.88a.76.76 0 0 1-.76.75Z"
+                style="fill:#4285f4" />
+              <circle cx="15.01" cy="5.69" r=".76" style="fill:#4285f4" />
+              <circle cx="15.01" cy="14.19" r=".76" style="fill:#4285f4" />
+              <circle cx="15.01" cy="11.97" r=".76" style="fill:#4285f4" />
+              <circle cx="8.99" cy="14.19" r=".76" style="fill:#aecbfa" />
+              <circle cx="8.99" cy="7.92" r=".76" style="fill:#aecbfa" />
+              <circle cx="8.99" cy="5.69" r=".76" style="fill:#aecbfa" />
+              <path d="M9 12.73a.76.76 0 0 1-.76-.73v-1.9a.75.75 0 1 1 1.5 0V12a.75.75 0 0 1-.74.73Z"
+                style="fill:#aecbfa" />
+            </svg></span><span class="prov__name">Vertex
+            AI</span></div>
+        <div class="prov"><span class="prov__logo prov__logo--br">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <title>Icon-Architecture/48/Arch_Amazon-Bedrock_48</title>
+              <g id="Icon-Architecture/48/Arch_Amazon-Bedrock_48" stroke="none" stroke-width="1" fill="none"
+                fill-rule="evenodd">
+                <g id="Icon-Service/48/Amazon-Bedrock_48" transform="translate(10.000000, 10.000000)" fill="#FFFFFF">
+                  <path
+                    d="M41,20.9998818 C40.448,20.9998818 40,20.5508818 40,19.9998818 C40,19.4488818 40.448,18.9998818 41,18.9998818 C41.552,18.9998818 42,19.4488818 42,19.9998818 C42,20.5508818 41.552,20.9998818 41,20.9998818 L41,20.9998818 Z M16.977,41.8478818 L13.774,40.1018818 L17.515,37.8568818 L16.485,36.1428818 L11.738,38.9908818 L7,36.4058818 L7,30.5658818 L11.515,27.8568818 L10.485,26.1428818 L6,28.8338818 L2,26.4338818 L2,22.6178818 L7.447,19.8948818 L6.553,18.1048818 L2,20.3818818 L2,17.6178818 L6.956,15.1398818 L11,17.5658818 L11,20.3818818 L7.553,22.1048818 L8.447,23.8948818 L12.003,22.1168818 L15.557,23.8768818 L16.443,22.0848818 L13,20.3798818 L13,17.5658818 L17.515,14.8568818 C17.815,14.6768818 18,14.3508818 18,13.9998818 L18,8.99988178 L16,8.99988178 L16,13.4338818 L12,15.8338818 L8,13.4338818 L8,6.58788178 L11,4.92188178 L11,10.9998818 L13,10.9998818 L13,3.81088178 L16.024,2.12988178 L21.002,4.61588178 L21.001,26.4498818 L10.463,33.1558818 L11.537,34.8438818 L21.001,28.8218818 L21,39.4338818 L16.977,41.8478818 Z M38,28.9998818 C38.552,28.9998818 39,29.4488818 39,29.9998818 C39,30.5508818 38.552,30.9998818 38,30.9998818 C37.448,30.9998818 37,30.5508818 37,29.9998818 C37,29.4488818 37.448,28.9998818 38,28.9998818 L38,28.9998818 Z M30,38.9998818 C29.448,38.9998818 29,38.5508818 29,37.9998818 C29,37.4488818 29.448,36.9998818 30,36.9998818 C30.552,36.9998818 31,37.4488818 31,37.9998818 C31,38.5508818 30.552,38.9998818 30,38.9998818 L30,38.9998818 Z M32,5.99988178 C32.552,5.99988178 33,6.44888178 33,6.99988178 C33,7.55088178 32.552,7.99988178 32,7.99988178 C31.448,7.99988178 31,7.55088178 31,6.99988178 C31,6.44888178 31.448,5.99988178 32,5.99988178 L32,5.99988178 Z M41,16.9998818 C39.698,16.9998818 38.598,17.8388818 38.184,18.9998818 L23.001,18.9998818 L23.001,14.9998818 L32,14.9998818 C32.553,14.9998818 33,14.5518818 33,13.9998818 L33,9.81588178 C34.161,9.40188178 35,8.30188178 35,6.99988178 C35,5.34588178 33.654,3.99988178 32,3.99988178 C30.346,3.99988178 29,5.34588178 29,6.99988178 C29,8.30188178 29.839,9.40188178 31,9.81588178 L31,12.9998818 L23.001,12.9998818 L23.002,3.99788178 C23.002,3.61888178 22.788,3.27288178 22.449,3.10388178 L16.447,0.104881781 C16.151,-0.0421182195 15.803,-0.0341182195 15.515,0.125881781 L6.515,5.12588178 C6.197,5.30188178 6,5.63688178 6,5.99988178 L6,13.3818818 L0.553,16.1048818 C0.214,16.2748818 0,16.6208818 0,16.9998818 L0,26.9998818 C0,27.3508818 0.185,27.6768818 0.485,27.8568818 L5,30.5658818 L5,36.9998818 C5,37.3658818 5.2,37.7028818 5.521,37.8778818 L16.521,43.8778818 C16.671,43.9588818 16.835,43.9998818 17,43.9998818 C17.179,43.9998818 17.356,43.9518818 17.515,43.8568818 L22.515,40.8568818 C22.815,40.6768818 23,40.3508818 23,39.9998818 L23,32.9998818 L29,32.9998818 L29,35.1838818 C27.839,35.5978818 27,36.6978818 27,37.9998818 C27,39.6538818 28.346,40.9998818 30,40.9998818 C31.654,40.9998818 33,39.6538818 33,37.9998818 C33,36.6978818 32.161,35.5978818 31,35.1838818 L31,31.9998818 C31,31.4478818 30.553,30.9998818 30,30.9998818 L23,30.9998818 L23.001,26.9998818 L33.586,26.9998818 L35.301,28.7148818 C35.113,29.1058818 35,29.5378818 35,29.9998818 C35,31.6538818 36.346,32.9998818 38,32.9998818 C39.654,32.9998818 41,31.6538818 41,29.9998818 C41,28.3458818 39.654,26.9998818 38,26.9998818 C37.538,26.9998818 37.106,27.1128818 36.715,27.3008818 L34.707,25.2928818 C34.52,25.1048818 34.266,24.9998818 34,24.9998818 L23.001,24.9998818 L23.001,20.9998818 L38.184,20.9998818 C38.598,22.1608818 39.698,22.9998818 41,22.9998818 C42.654,22.9998818 44,21.6538818 44,19.9998818 C44,18.3458818 42.654,16.9998818 41,16.9998818 L41,16.9998818 Z"
+                    id="Fill-3"></path>
+                </g>
+              </g>
+            </svg>
+          </span><span class="prov__name">AWS
+            Bedrock</span></div>
+        <div class="prov"><span class="prov__logo prov__logo--or">Or</span><span class="prov__name">OpenRouter</span>
+        </div>
+        <div class="prov"><span class="prov__logo prov__logo--ol"><img class="prov__ico"
+              src="https://cdn.simpleicons.org/ollama/cfe3ea" alt="Ol"></span><span class="prov__name">Ollama</span>
+        </div>
+        <div class="prov"><span class="prov__logo prov__logo--lm"><svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="#ffffff" fill-rule="evenodd">
+              <title>LM Studio</title>
+              <path
+                d="M2.84 2a1.273 1.273 0 100 2.547h14.107a1.273 1.273 0 100-2.547H2.84zM7.935 5.33a1.273 1.273 0 000 2.548H22.04a1.274 1.274 0 000-2.547H7.935zM3.624 9.935c0-.704.57-1.274 1.274-1.274h14.106a1.274 1.274 0 010 2.547H4.898c-.703 0-1.274-.57-1.274-1.273zM1.273 12.188a1.273 1.273 0 100 2.547H15.38a1.274 1.274 0 000-2.547H1.273zM3.624 16.792c0-.704.57-1.274 1.274-1.274h14.106a1.273 1.273 0 110 2.547H4.898c-.703 0-1.274-.57-1.274-1.273zM13.029 18.849a1.273 1.273 0 100 2.547h9.698a1.273 1.273 0 100-2.547h-9.698z"
+                fill-opacity=".3" />
+              <path
+                d="M2.84 2a1.273 1.273 0 100 2.547h10.287a1.274 1.274 0 000-2.547H2.84zM7.935 5.33a1.273 1.273 0 000 2.548H18.22a1.274 1.274 0 000-2.547H7.935zM3.624 9.935c0-.704.57-1.274 1.274-1.274h10.286a1.273 1.273 0 010 2.547H4.898c-.703 0-1.274-.57-1.274-1.273zM1.273 12.188a1.273 1.273 0 100 2.547H11.56a1.274 1.274 0 000-2.547H1.273zM3.624 16.792c0-.704.57-1.274 1.274-1.274h10.286a1.273 1.273 0 110 2.547H4.898c-.703 0-1.274-.57-1.274-1.273zM13.029 18.849a1.273 1.273 0 100 2.547h5.78a1.273 1.273 0 100-2.547h-5.78z" />
+            </svg></span><span class="prov__name">LM Studio</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="customize" id="customize" data-screen-label="Customize">
+    <div class="customize__inner">
+      <div class="customize__copy" data-reveal>
+        <div class="kicker">
+          <span class="kicker__label">Make it yours</span>
+          <span class="kicker__line"></span>
+        </div>
+        <h2 class="section-title">Atmospheric workspaces.</h2>
+        <p class="customize__text">Kallamo matches the mood of whatever you are making. Give every workspace its own
+          wallpaper, dial the glass opacity of each message, choose serif, sans, or mono, and pick the accent that sets
+          the tone.</p>
+        <div class="swatches">
+          <div class="swatch"><button class="swatch__btn" id="cl-sw-0" data-idx="0" aria-label="Gold"
+              style="background:#FBCB2D"></button><span class="swatch__name">Gold</span></div>
+          <div class="swatch"><button class="swatch__btn" id="cl-sw-1" data-idx="1" aria-label="Ruby"
+              style="background:#ff5f56"></button><span class="swatch__name">Ruby</span></div>
+          <div class="swatch"><button class="swatch__btn" id="cl-sw-2" data-idx="2" aria-label="Sapphire"
+              style="background:#3b82f6"></button><span class="swatch__name">Sapphire</span></div>
+          <div class="swatch"><button class="swatch__btn" id="cl-sw-3" data-idx="3" aria-label="Emerald"
+              style="background:#10b981"></button><span class="swatch__name">Emerald</span></div>
+          <div class="swatch"><button class="swatch__btn" id="cl-sw-4" data-idx="4" aria-label="Amethyst"
+              style="background:#9c27b0"></button><span class="swatch__name">Amethyst</span></div>
+        </div>
+        <p class="swatches__hint">Select a color to shift the app's atmosphere</p>
+      </div>
+      <div class="customize__media" data-reveal>
+        <div class="customize__glow" id="cl-glow" aria-hidden="true"></div>
+        <div class="customize__frame" id="cl-imgframe">
+          <img id="cl-img" src="assets/ws-gold.png" alt="Kallamo workspace accent preview">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="community" id="community" data-screen-label="Community">
+    <div class="community__glow" aria-hidden="true"></div>
+    <div class="community__inner">
+      <div class="community__head" data-reveal>
+        <div class="eyebrow eyebrow--center">
+          <span class="eyebrow__line eyebrow__line--l"></span>
+          <span class="eyebrow__label">Founding members</span>
+          <span class="eyebrow__line eyebrow__line--r"></span>
+        </div>
+        <h2 class="community__title">Build Kallamo from day one.</h2>
+        <p class="community__sub">Kallamo just launched. The earliest members shape what it becomes — the features, the
+          shared profiles, the direction. Claim your spot while the community is still being founded.</p>
+      </div>
+
+      <div class="community__counter" id="cm-counter" data-reveal>
+        <div class="counter__row">
+          <span class="counter__now" id="cm-count">&mdash;</span>
+          <span class="counter__goal">/ <span id="cm-goal">100</span> founding members</span>
+        </div>
+        <div class="counter__bar"><span class="counter__fill" id="cm-fill"></span></div>
+        <p class="counter__hint" id="cm-hint">Spots are filling as we build.</p>
+      </div>
+
+      <div class="community__cards" data-reveal>
+        <div class="ccard">
+          <span class="ccard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg></span>
+          <h3 class="ccard__title">Contribute code</h3>
+          <p class="ccard__text">Kallamo is open source under AGPLv3. Open issues, ship features, and help shape the
+            architecture.</p>
+        </div>
+        <div class="ccard">
+          <span class="ccard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3"></circle>
+              <circle cx="6" cy="12" r="3"></circle>
+              <circle cx="18" cy="19" r="3"></circle>
+              <line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line>
+              <line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line>
+            </svg></span>
+          <h3 class="ccard__title">Create &amp; share</h3>
+          <p class="ccard__text">Build AI Profiles, Knowledge Bases, and Workflows, then share your portable packages
+            with the whole community.</p>
+        </div>
+        <div class="ccard">
+          <span class="ccard__ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path>
+              <line x1="4" y1="22" x2="4" y2="15"></line>
+            </svg></span>
+          <h3 class="ccard__title">Shape the app</h3>
+          <p class="ccard__text">Test new builds, report what breaks, and vote on what comes next. Your feedback drives
+            the roadmap.</p>
+        </div>
+      </div>
+
+      <p class="community__invite" data-reveal>Join now and claim the <span class="accent">Pathfinder</span> role to be
+        forever recognized as a founding member of our community.</p>
+
+      <div class="community__cta" data-reveal>
+        <a class="btn-pill btn-pill--gold btn-pill--lg" href="https://discord.com/invite/CE4C9JRS9H" target="_blank"
+          rel="noopener">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" width="20" height="20" fill="currentColor">
+            <path
+              d="M107.7,8.07A105.15,105.15,0,0,0,77.26,0a77.19,77.19,0,0,0-3.3,6.83A96.67,96.67,0,0,0,53.22,6.83,77.19,77.19,0,0,0,49.88,0,105.15,105.15,0,0,0,19.44,8.07C3.66,31.58-1.86,54.65,1,77.53A105.73,105.73,0,0,0,32,96.36a77.7,77.7,0,0,0,6.63-10.85,68.43,68.43,0,0,1-10.5-5c1.1-.8,2.17-1.64,3.2-2.5a75.6,75.6,0,0,0,71.7,0c1,1,2.1,1.7,3.2,2.5a68.43,68.43,0,0,1-10.5,5,77.7,77.7,0,0,0,6.63,10.85,105.73,105.73,0,0,0,31-18.83C129.07,50.12,122.9,27.28,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53S36.18,40.36,42.45,40.36,53.83,46,53.83,53,48.72,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.24,60,73.24,53S78.41,40.36,84.69,40.36,96.07,46,96.07,53,91,65.69,84.69,65.69Z" />
+          </svg>
+          Join the Discord Server
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="download" data-screen-label="Download">
+    <div class="download__rainbow" aria-hidden="true"></div>
+    <div class="download__glow" aria-hidden="true"></div>
+    <div class="download__inner" data-reveal>
+      <img class="download__logo" src="assets/logo.svg" alt="">
+      <h2 class="download__head">Craft the mind.<br><span class="accent-italic">Chain the thought.</span></h2>
+      <p class="download__sub">Own your AI. Own your data. Download Kallamo for desktop. It is free, open source, and
+        runs entirely on your machine.</p>
+
+      <div class="download__cta">
+        <a class="dlbtn-main" href="download.html">
+          Download Kallamo
+          <span class="dlbtn-main__os">
+            <svg class="os-ico os-ico--win" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M0 3.4 9.8 2v9.6H0zM11 1.85 24 0v11.4H11zM0 12.6h9.8V22L0 20.6zM11 12.6H24V24l-13-1.85z"></path>
+            </svg>
+            <img class="os-ico" src="https://cdn.simpleicons.org/apple/05121a" alt="macOS">
+            <img class="os-ico" src="https://cdn.simpleicons.org/linux/05121a" alt="Linux">
+          </span>
+        </a>
+        <a class="download__github" href="https://github.com/Kallamo/Kallamo" target="_blank" rel="noopener">View the
+          source on GitHub</a>
+      </div>
+      <p class="download__meta">Free &amp; open source · AGPLv3 · Bring your own key</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <div class="site-footer__logo">
+          <img src="assets/logo.svg" alt="Kallamo">
+          <img src="assets/logotype.svg" alt="Kallamo">
+        </div>
+        <p class="site-footer__tag">Craft the mind. Chain the thought. <br> The bring your own key desktop platform that
+          puts
+          you in full control of AI.</p>
+      </div>
+      <div class="site-footer__cols">
+        <div class="site-footer__col">
+          <span class="site-footer__heading">Product</span>
+          <a href="#features">Platform</a>
+          <a href="#customize">Customize</a>
+          <a href="download.html">Download</a>
+        </div>
+        <div class="site-footer__col">
+          <span class="site-footer__heading">Community</span>
+          <a href="https://github.com/Kallamo/Kallamo" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://discord.com/invite/CE4C9JRS9H" target="_blank" rel="noopener">Discord</a>
+          <a href="https://github.com/Kallamo/Kallamo/issues" target="_blank" rel="noopener">Issues</a>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>&copy; 2026 Kallamo · Licensed under AGPLv3</span>
+      <span class="site-footer__built">Built with Electron · React · SQLite</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

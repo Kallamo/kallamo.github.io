@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Download Kallamo — Windows, macOS &amp; Linux</title>
+  <meta name="description"
+    content="Download Kallamo for desktop. Free, open source, and runs entirely on your machine. Available for Windows, macOS, and Linux.">
+  <meta name="theme-color" content="#010a12">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kallamo.github.io/download.html">
+  <meta property="og:title" content="Download Kallamo">
+  <meta property="og:description"
+    content="Free, open source, and runs entirely on your machine. Available for Windows, macOS, and Linux.">
+  <meta property="og:image" content="https://kallamo.github.io/assets/ws-space.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="dlpage">
+
+    <div class="dlpage__bar">
+      <a class="dlpage__back" href="index.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Back to site
+      </a>
+      <a class="site-nav__link" href="https://github.com/Kallamo/Kallamo" target="_blank" rel="noopener">GitHub</a>
+    </div>
+
+    <main class="dlpage__main">
+      <div class="dlpage__glow" aria-hidden="true"></div>
+      <img class="dlpage__logo" src="assets/logo.svg" alt="">
+      <h1 class="dlpage__title">Download Kallamo</h1>
+      <p class="dlpage__sub">Free, open source, and runs entirely on your machine. Choose your platform.</p>
+
+      <div class="dlpicker">
+        <div class="dlpicker__menu" role="tablist" aria-label="Platform">
+          <button class="dlpicker__item is-active" data-os="win" type="button" role="tab">
+            <span class="dlpicker__item-ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0 3.4 9.8 2v9.6H0zM11 1.85 24 0v11.4H11zM0 12.6h9.8V22L0 20.6zM11 12.6H24V24l-13-1.85z"></path></svg></span>
+            <span class="dlpicker__item-tx"><b>Windows</b><small>.exe installer</small></span>
+          </button>
+          <button class="dlpicker__item" data-os="mac" type="button" role="tab">
+            <span class="dlpicker__item-ic"><img src="https://cdn.simpleicons.org/apple/FBCB2D" alt="" aria-hidden="true"></span>
+            <span class="dlpicker__item-tx"><b>macOS</b><small>.dmg disk image</small></span>
+          </button>
+          <button class="dlpicker__item" data-os="linux" type="button" role="tab">
+            <span class="dlpicker__item-ic"><img src="https://cdn.simpleicons.org/linux/FBCB2D" alt="" aria-hidden="true"></span>
+            <span class="dlpicker__item-tx"><b>Linux</b><small>AppImage &amp; .deb</small></span>
+          </button>
+        </div>
+
+        <section class="dlpicker__panel">
+          <div class="dlpicker__os-ico" id="dp-icon"></div>
+          <h2 class="dlpicker__os-name" id="dp-name">Windows</h2>
+          <p class="dlpicker__os-desc" id="dp-desc"></p>
+          <a class="btn-pill btn-pill--gold btn-pill--lg dlpicker__cta" id="dp-cta" href="https://github.com/Kallamo/Kallamo/releases/latest" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="width:18px;height:18px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span id="dp-cta-label">Download for Windows</span>
+          </a>
+          <p class="dlpicker__meta" id="dp-meta">Free · open source · AGPLv3</p>
+          <div class="dlpicker__warn" id="dp-warn" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <span id="dp-warn-text"></span>
+          </div>
+        </section>
+      </div>
+
+      <p class="download__testers">Need help getting set up? <a href="https://discord.com/invite/CE4C9JRS9H" target="_blank" rel="noopener">Ask on the Discord &#8594;</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-footer__bottom" style="margin-top: 0; border-top: none;">
+        <span>&copy; 2026 Kallamo · Licensed under AGPLv3</span>
+        <span class="site-footer__built">Built with Electron · React · SQLite</span>
+      </div>
+    </footer>
+
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
