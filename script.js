@@ -170,6 +170,29 @@
       .catch(function () { });
   }
 
+  function initShowcase() {
+    var lists = document.querySelectorAll('[data-showcase]');
+    lists.forEach(function (list) {
+      var items = list.querySelectorAll('.quality');
+      if (items.length < 2) return;
+      var idx = 0;
+      var timer = null;
+
+      function show(i) {
+        idx = ((i % items.length) + items.length) % items.length;
+        items.forEach(function (it, n) { it.classList.toggle('is-active', n === idx); });
+      }
+      function start() { clearInterval(timer); timer = setInterval(function () { show(idx + 1); }, 3200); }
+
+      items.forEach(function (it, n) {
+        it.addEventListener('mouseenter', function () { clearInterval(timer); show(n); });
+        it.addEventListener('mouseleave', start);
+      });
+      show(0);
+      start();
+    });
+  }
+
   function initReveal() {
     var els = document.querySelectorAll('[data-reveal]');
     if (!('IntersectionObserver' in window)) {
@@ -195,6 +218,13 @@
   function initDownloadPicker() {
     var picker = document.querySelector('.dlpicker');
     if (!picker) return;
+    var channel = document.body.getAttribute('data-channel') || picker.getAttribute('data-channel') || 'stable';
+    var isBeta = channel === 'beta';
+    var BETA_TAG = 'v1.1.0-beta.1';
+    var fallbackUrl = isBeta ? 'https://github.com/' + REPO + '/releases/tag/' + BETA_TAG : RELEASES;
+    var apiUrl = isBeta
+      ? 'https://api.github.com/repos/' + REPO + '/releases/tags/' + BETA_TAG
+      : 'https://api.github.com/repos/' + REPO + '/releases/latest';
     var items = picker.querySelectorAll('.dlpicker__item');
     var iconEl = byId('dp-icon');
     var nameEl = byId('dp-name');
@@ -233,6 +263,14 @@
         warn: 'The AppImage updates itself automatically. The .deb does not — update it through your package manager or by downloading the new version here.'
       }
     };
+    if (isBeta) {
+      Object.keys(DATA).forEach(function (os) {
+        var d = DATA[os];
+        d.label = d.label.replace('Download for', 'Download the beta for');
+        d.meta = d.meta + ' · beta build';
+      });
+    }
+
     var links = {};
     var current = 'win';
 
@@ -245,7 +283,7 @@
       if (descEl) descEl.textContent = d.desc;
       if (ctaLabel) ctaLabel.textContent = d.label;
       if (metaEl) metaEl.textContent = d.meta;
-      if (ctaEl) ctaEl.href = links[os] || RELEASES;
+      if (ctaEl) ctaEl.href = links[os] || fallbackUrl;
       if (warnEl) {
         if (d.warn) { if (warnTextEl) warnTextEl.textContent = d.warn; warnEl.hidden = false; }
         else { warnEl.hidden = true; }
@@ -259,7 +297,7 @@
 
     select(detectOs() || 'win');
 
-    fetch('https://api.github.com/repos/' + REPO + '/releases/latest', { headers: { Accept: 'application/vnd.github+json' } })
+    fetch(apiUrl, { headers: { Accept: 'application/vnd.github+json' } })
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (data) {
         if (!data || !data.assets) return;
@@ -270,7 +308,7 @@
           else if (n.endsWith('.appimage')) links.linux = a.browser_download_url;
           else if (!links.linux && n.endsWith('.deb')) links.linux = a.browser_download_url;
         });
-        if (ctaEl) ctaEl.href = links[current] || RELEASES;
+        if (ctaEl) ctaEl.href = links[current] || fallbackUrl;
       })
       .catch(function () { });
   }
@@ -281,6 +319,7 @@
     initMarquee();
     initCustomize();
     initCommunity();
+    initShowcase();
     initReveal();
     initDownloadPicker();
   }
